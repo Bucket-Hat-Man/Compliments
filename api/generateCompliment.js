@@ -6,7 +6,7 @@ export default async function handler(req, res) {
         return;
     }
 
-    const { userInput } = req.body;
+    const { userInput, promptStyle } = req.body;
 
     // Debugging - Check if API key is accessible
     if (!process.env.COHERE_API_KEY) {
@@ -19,9 +19,9 @@ export default async function handler(req, res) {
 
     const data = {
         model: 'command-xlarge-nightly',
-        prompt: `Generate a kind, funny and unique compliment for the following answer to the question What's your name and why do you need a compliment today?: ${userInput}`,
+        prompt: `Generate a kind, funny and unique compliment. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
         max_tokens: 100,
-        temperature: 0.7,
+        temperature: 0.9, // Increased temperature for more varied output
     };
 
     try {

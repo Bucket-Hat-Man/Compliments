@@ -83,12 +83,21 @@
             }
 
             try {
-                const response = await fetch('/api/generateCompliment', {
+                const styles = [
+                "Make it hilarious and extremely unique.",
+                "Be very creative, make it poetic.",
+                "Make it a funny yet heartfelt compliment.",
+                "Include some quirky humor.",
+                "Give it a playful and slightly sarcastic touch."
+            ];
+            const randomStyle = styles[Math.floor(Math.random() * styles.length)];
+
+            const response = await fetch('/api/generateCompliment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify({ userInput }),
+                    body: JSON.stringify({ userInput, promptStyle: randomStyle }),
                 });
 
                 const result = await response.json();
