@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Best Compliment Generator</title>
+    <title>Get a Compliment</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
     <style>
         body {
@@ -47,18 +47,17 @@
         #compliment {
             margin-top: 20px;
             font-size: 18px;
-            overflow-y: auto;
+            overflow: visible;
             padding: 10px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #f9f9f9;
-            max-height: none;
         }
     </style>
 </head>
 <body>
     <div id="container">
-        <h1>You deserve a compliment!</h1>
+        <h1>Get a Compliment</h1>
         <input type="text" id="userInput" placeholder="What's your name and reason for visiting?">
         <button onclick="generateCompliment()">Make me a compliment</button>
         <div id="compliment" style="display: none;"></div>
