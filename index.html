@@ -58,44 +58,40 @@
 </head>
 <body>
     <div id="container">
-        <h1>Generate a Kind Compliment</h1>
-        <input type="text" id="userInput" placeholder="Enter your name or something about you...">
-        <button onclick="generateCompliment()">Get Compliment</button>
-        <div id="compliment"></div>
+        <h1>You deserve a compliment!</h1>
+        <input type="text" id="userInput" placeholder="What's your name and reason for visiting?">
+        <button onclick="generateCompliment()">Make me a compliment</button>
+        <div id="compliment" style="display: none;"></div>
     </div>
     <script>
         async function generateCompliment() {
             const userInput = document.getElementById('userInput').value;
             if (!userInput) {
+                document.getElementById('compliment').style.display = 'block';
                 document.getElementById('compliment').innerHTML = 'Please enter something!';
                 return;
             }
-            
-            const data = {
-                "model": "command-xlarge-nightly",
-                "prompt": `Generate a kind, funny, unique, and concise compliment for the following input: ${userInput}`,
-                "max_tokens": 50,
-                "temperature": 0.7
-            };
 
             try {
-                const response = await fetch('https://api.cohere.ai/v1/generate', {
+                const response = await fetch('/api/generateCompliment', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${process.env.COHERE_API_KEY}`
                     },
-                    body: JSON.stringify(data)
+                    body: JSON.stringify({ userInput }),
                 });
-                
+
                 const result = await response.json();
-                if (result && result.generations && result.generations.length > 0) {
-                    document.getElementById('compliment').innerHTML = result.generations[0].text;
+                if (result && result.compliment) {
+                    document.getElementById('compliment').style.display = 'block';
+                    document.getElementById('compliment').innerHTML = result.compliment;
                 } else {
+                    document.getElementById('compliment').style.display = 'block';
                     document.getElementById('compliment').innerHTML = 'Sorry, something went wrong. Please try again.';
                 }
             } catch (error) {
                 console.error('Error:', error);
+                document.getElementById('compliment').style.display = 'block';
                 document.getElementById('compliment').innerHTML = 'Sorry, something went wrong. Please try again.';
             }
         }
