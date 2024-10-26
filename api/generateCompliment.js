@@ -29,6 +29,9 @@ const adjectives = [
     "inspiring",
     "charming",
     "creative",
+    "loving"
+    "unexpected"
+    "weird but cute"
 ];
 
 // Randomly select 2 or 3 adjectives from the array
@@ -42,7 +45,7 @@ const selectedAdjectives = getRandomAdjectives(3);
 
 const data = {
     model: 'command-xlarge-nightly',
-    prompt: `Generate a ${selectedAdjectives} compliment in max 100 words. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
+    prompt: `Generate a ${selectedAdjectives} compliment in max 80 words. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
     max_tokens: 150, // Increased max tokens to allow for longer, more complete compliments
     temperature: 0.8, // Increased temperature for more varied output
 };
