@@ -17,12 +17,35 @@ export default async function handler(req, res) {
 
     console.log("API Key found. Proceeding with request...");
 
-    const data = {
-        model: 'command-xlarge-nightly',
-        prompt: `Generate a kind, funny and unique compliment. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
-        max_tokens: 80,
-        temperature: 0.8, // Increased temperature for more varied output
-    };
+    // Define an array of adjectives
+const adjectives = [
+    "kind",
+    "funny",
+    "unique",
+    "thoughtful",
+    "witty",
+    "heartwarming",
+    "playful",
+    "inspiring",
+    "charming",
+    "creative",
+];
+
+// Randomly select 2 or 3 adjectives from the array
+const getRandomAdjectives = (count) => {
+    const shuffled = adjectives.sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, count).join(", ");
+};
+
+// Generate random adjectives for the prompt
+const selectedAdjectives = getRandomAdjectives(3);
+
+const data = {
+    model: 'command-xlarge-nightly',
+    prompt: `Generate a ${selectedAdjectives} compliment in max 100 words. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
+    max_tokens: 150, // Increased max tokens to allow for longer, more complete compliments
+    temperature: 0.8, // Increased temperature for more varied output
+};
 
     try {
         const response = await fetch('https://api.cohere.ai/v1/generate', {
