@@ -20,8 +20,8 @@ export default async function handler(req, res) {
     const data = {
         model: 'command-xlarge-nightly',
         prompt: `Generate a kind, funny and unique compliment. ${promptStyle} Answer: What's your name and why do you need a compliment today?: ${userInput}`,
-        max_tokens: 100,
-        temperature: 0.9, // Increased temperature for more varied output
+        max_tokens: 80,
+        temperature: 0.8, // Increased temperature for more varied output
     };
 
     try {
