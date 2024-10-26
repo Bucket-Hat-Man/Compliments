@@ -29,9 +29,9 @@ const adjectives = [
     "inspiring",
     "charming",
     "creative",
-    "loving"
-    "unexpected"
-    "weird but cute"
+    "loving",
+    "unexpected",
+    "weird but cute",
 ];
 
 // Randomly select 2 or 3 adjectives from the array
